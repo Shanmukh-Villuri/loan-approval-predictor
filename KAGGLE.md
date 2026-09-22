@@ -26,6 +26,11 @@ no 166 MB upload.
    - cell 3 trains (`src.train`, Optuna 30/30/20, SVD-50 benchmark, SMOTE-in-folds, stack),
    - cell 4 evaluates (`src.evaluate`) and prints `final_metrics.json`.
 
+> **If cell 0 says the CSV isn't mounted:** you skipped step 2. Right sidebar →
+> **+ Add Data → Competition** (not Dataset) → search `Home Credit Default Risk` →
+> **Add**, then re-run cell 0. Cell 0 lists what's actually mounted and auto-detects
+> the file if it arrived under a different folder name.
+
 5. **Execute headless**: **Save Version → Save & Run All (Commit)** — not interactive
    Run All. Committed runs execute up to 9h in the background with versioned outputs,
    immune to closed tabs. Optional: run the `--quick` smoke test interactively first
