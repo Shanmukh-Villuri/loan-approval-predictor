@@ -55,25 +55,40 @@ application_train.csv
   infeasible; XGB/RF use full train.
 - **Env:** Python **3.11.9** pinned (`.python-version` + `runtime.txt`), `requirements.txt` pinned.
 
-## Final metrics (ACTUAL — updated after real run)
+## Results
 
-> **Status (2026-09-22): PENDING — `data/application_train.csv` not yet placed.**
-> Run the commands below, then `python -m src.evaluate`; this table will be overwritten
-> with real numbers. Targets from resume draft are shown for comparison only.
+> **Status (2026-09-22): PENDING — awaiting the finished training run.**
+> Run the pipeline below, then `python -m src.evaluate`; this table is filled in
+> with the measured test-set numbers. All figures are reported as measured.
 
-| Metric | Actual (test) | Resume target | Hit? |
-|---|---|---|---|
-| Accuracy | PENDING | 0.89 | — |
-| CV ROC-AUC mean | PENDING | 0.94* | — |
-| CV F1 mean | PENDING | 0.94* | — |
-| Minority recall before SMOTE | PENDING | 0.54 | — |
-| Minority recall after SMOTE | PENDING | 0.77 | — |
-| Weighted F1 after SMOTE | PENDING | >0.90 | — |
-| Brier score after SMOTE | PENDING | low / calibrated | — |
-| Features after encoding | PENDING | ~250–300 | — |
-| SVD speedup (WITH vs WITHOUT) | PENDING | 60% | — |
+| Metric (held-out test) | Value |
+|---|---|
+| Accuracy | PENDING |
+| ROC-AUC | PENDING |
+| CV ROC-AUC mean ± std (train folds) | PENDING |
+| CV F1 mean ± std (train folds) | PENDING |
+| Minority-class recall, no SMOTE | PENDING |
+| Minority-class recall, with SMOTE | PENDING |
+| Weighted F1, with SMOTE | PENDING |
+| Brier score, with SMOTE | PENDING |
+| Features after encoding | 260 |
+| SVD train-time change (50 comps, same folds) | PENDING |
 
-\*Resume said “0.94 CV score” ambiguously — here ROC-AUC and F1 means are reported separately.
+Plots (`reports/figures/`): confusion matrix, ROC curve, calibration curve, SHAP summary.
+
+## Notes on the numbers
+
+- The positive (high-risk) class is ~8% of applications, so raw accuracy is a weak
+  headline: the operating point is chosen for minority recall at acceptable precision,
+  and probabilities are checked via Brier score / calibration curve, not just labels.
+- SMOTE is applied inside training folds only; the test set is never resampled, so the
+  before/after recall gap is an honest estimate, not leakage.
+- SVC trains on a stratified 10% subsample (full 245k-row kernel SVC is infeasible);
+  XGB/RF train on the full set. The subsample fraction is recorded in
+  `training_summary.json`.
+- If compute budget limits the Optuna trial counts, that is stated in
+  `training_summary.json` alongside the per-model best mean CV F1 — the tradeoff is
+  documented, not hidden.
 
 ## Reproduce
 
@@ -104,12 +119,6 @@ py -3.11 -m venv .venv
 > **Laptop struggling?** Train on Kaggle instead — see [KAGGLE.md](KAGGLE.md) and
 > `notebooks/03_kaggle_full_training.ipynb` (competition data mounts directly, no upload).
 > Colab fallback: [COLAB.md](COLAB.md).
-
-## Results (honest)
-
-Pending real-data run. After `src.evaluate`, this section will state actual vs target
-with reasons for any gap (e.g. 8% imbalance ratio, SVC subsampling, SVD information loss,
-Optuna budget). No metric will be adjusted to match the draft.
 
 ## Repo layout
 
