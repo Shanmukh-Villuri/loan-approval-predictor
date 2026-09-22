@@ -57,26 +57,13 @@ application_train.csv
 
 ## Results
 
-> **Status (2026-09-22): PENDING — awaiting the finished training run.**
-> Run the pipeline below, then `python -m src.evaluate`; this table is filled in
-> with the measured test-set numbers. All figures are reported as measured.
+Running the pipeline writes measured metrics to `models/final_metrics.json` and
+plots to `reports/figures/` (confusion matrix, ROC curve, calibration curve, SHAP
+summary). Model binaries (`*.pkl`) and raw data are gitignored; the metric summaries
+and figures are committed alongside the run that produced them, so every reported
+figure traces back to an actual `training_summary.json`.
 
-| Metric (held-out test) | Value |
-|---|---|
-| Accuracy | PENDING |
-| ROC-AUC | PENDING |
-| CV ROC-AUC mean ± std (train folds) | PENDING |
-| CV F1 mean ± std (train folds) | PENDING |
-| Minority-class recall, no SMOTE | PENDING |
-| Minority-class recall, with SMOTE | PENDING |
-| Weighted F1, with SMOTE | PENDING |
-| Brier score, with SMOTE | PENDING |
-| Features after encoding | 260 |
-| SVD train-time change (50 comps, same folds) | PENDING |
-
-Plots (`reports/figures/`): confusion matrix, ROC curve, calibration curve, SHAP summary.
-
-## Notes on the numbers
+## Method notes
 
 - The positive (high-risk) class is ~8% of applications, so raw accuracy is a weak
   headline: the operating point is chosen for minority recall at acceptable precision,

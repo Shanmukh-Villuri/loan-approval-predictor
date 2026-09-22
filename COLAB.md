@@ -37,8 +37,8 @@ Colab run (`models/final_metrics.json`).
 
 5. **Bring results home**: cell 7 downloads `final_metrics.json`,
    `training_summary.json`, and `reports/figures/*.png`. On the laptop, copy them into
-   `models/` and `reports/figures/`, paste the ACTUAL numbers into the README metrics
-   table (replacing PENDING), and commit:
+   `models/` and `reports/figures/`, record the headline numbers in the README if you
+   want them there, and commit:
    ```powershell
    git add models/final_metrics.json models/training_summary.json reports/figures README.md
    git commit -m "Real Colab metrics: <one-line summary>"

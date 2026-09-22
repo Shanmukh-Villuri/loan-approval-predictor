@@ -44,7 +44,7 @@ no 166 MB upload.
    git add models/final_metrics.json models/training_summary.json reports/figures README.md
    git commit -m "Real Kaggle metrics: <one-line summary>"
    ```
-   Paste the ACTUAL numbers into the README metrics table (replacing PENDING).
+   Record the headline numbers in the README if you want them there.
    If any resume-draft target is missed, say so in Results with reasons.
 
 ## Dependencies on Kaggle (important)
