@@ -101,6 +101,9 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\streamlit run app_streamlit.py
 ```
 
+> **Laptop struggling?** Train on Colab instead — see [COLAB.md](COLAB.md) and
+> `notebooks/02_colab_full_training.ipynb` (CPU high-RAM runtime, no GPU needed).
+
 ## Results (honest)
 
 Pending real-data run. After `src.evaluate`, this section will state actual vs target
