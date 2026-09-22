@@ -47,15 +47,21 @@ no 166 MB upload.
    Paste the ACTUAL numbers into the README metrics table (replacing PENDING).
    If any resume-draft target is missed, say so in Results with reasons.
 
-## If pinned installs fail
+## Dependencies on Kaggle (important)
 
-Kaggle images move Python versions over time. If `numpy==1.26.4` (pinned for our
-`.python-version` 3.11.9) refuses to install, fall back to latest compatibles:
+Do NOT `pip install -r requirements.txt` on Kaggle. Those pins target our local
+Python 3.11.9 env; on the Kaggle image (Python 3.12+) `numpy==1.26.4` downgrades the
+preinstalled numpy 2.x and corrupts scipy/sklearn (`No module named 'numpy.char'`).
+The notebook therefore installs only what's missing from the image
+(`xgboost imbalanced-learn optuna shap`) and keeps the image's numpy/scipy/sklearn/pandas.
+`training_summary.json` records the versions actually used — cite those, not the pins.
+
+**Recovering an env already broken by the pinned install:** run once, then
+Kernel → Restart, then continue from the (fixed) install cell:
 ```
-!pip install -q scikit-learn xgboost imbalanced-learn optuna pandas matplotlib seaborn shap streamlit joblib
+!pip install -q --upgrade --force-reinstall numpy scipy scikit-learn pandas xgboost imbalanced-learn optuna shap joblib matplotlib seaborn
 ```
-Note the substitution in the README Results section. Either way,
-`training_summary.json` records the versions actually used.
+This forces one consistent latest set. Afterwards the minimal install line is a no-op.
 
 ## Time expectations
 
