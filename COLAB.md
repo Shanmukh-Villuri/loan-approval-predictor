@@ -10,11 +10,10 @@ Colab run (`models/final_metrics.json`).
 
 ## Steps
 
-1. **Push this repo to GitHub** (it is already `git init` + committed locally):
+1. **Push this repo to GitHub** (it is already `git init` + committed locally;
+   remote already points at https://github.com/Shanmukh-Villuri/loan-approval-predictor):
    ```powershell
    # on the laptop, inside loan-approval-predictor/
-   git remote add origin https://github.com/<you>/loan-approval-predictor.git
-   git branch -M main
    git push -u origin main
    ```
    Do NOT commit `data/*.csv`, `models/*.pkl`, or `.venv/` (already gitignored).
