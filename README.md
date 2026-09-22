@@ -101,8 +101,9 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\streamlit run app_streamlit.py
 ```
 
-> **Laptop struggling?** Train on Colab instead — see [COLAB.md](COLAB.md) and
-> `notebooks/02_colab_full_training.ipynb` (CPU high-RAM runtime, no GPU needed).
+> **Laptop struggling?** Train on Kaggle instead — see [KAGGLE.md](KAGGLE.md) and
+> `notebooks/03_kaggle_full_training.ipynb` (competition data mounts directly, no upload).
+> Colab fallback: [COLAB.md](COLAB.md).
 
 ## Results (honest)
 
